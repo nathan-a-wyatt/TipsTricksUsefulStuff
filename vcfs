@@ -1,0 +1,17 @@
+###Useful one liners or dealing wiht BCF/VCF files
+
+#export vcf file from bcf file with filters for depth>3, less than 90% missing data and no indels
+vcftools --bcf variant.calls.bcf --out mito --remove-indels \
+  --min-meanDP 3 \
+  --max-missing 0.9 \
+  --minQ 20 \
+  --minDP 3 \
+  --recode 
+#export vcf with indels only
+vcftools --bcf variant.calls.bcf -out mito --keep-only-indels
+
+#run tassel on vcf file to convert to hapmap for gapit
+run_pipeline.pl -Xmx3100m -SortGenotypeFilePlugin -inputFile variant.calls.vcf -outputFile sorted.vcf
+
+run_pipeline.pl -Xmx3100m -importGuess sorted.vcf \
+        -filterAlign -filterAlignMinfreq 0.01 -filterAlignMaxfreq 0.99 -export snp.hmp.txt -exportType Hapmap
