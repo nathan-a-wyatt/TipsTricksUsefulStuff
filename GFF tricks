@@ -1,0 +1,10 @@
+#compare gff files with gffcompare
+#gffcompare is installed at /home/nathan.wyatt/sbf/programs/gffcompare/gffcompare
+
+gffcompare -R -r ref.gtf/gff -o $outprefix query.gtf/gff
+
+
+
+
+
+
