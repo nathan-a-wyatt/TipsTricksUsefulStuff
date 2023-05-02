@@ -1,0 +1,26 @@
+#usefull snippets for looking into popstructure
+
+#Start from VCF file (see vcf tips and tricks for file conversions)
+
+#Use plinnk1.9 (not 2.0 on) to do Principle component analysis
+#This snippet will look at 50Kb windows moving 10 bp and dropping loci
+# with a r > 0.1 to removed linked loci. This is linkage pruning
+
+plink --vcf $VCF --double-id --allow-extra-chr \
+--set-missing-var-ids @:# \
+--indep-pairwise 50 10 0.1 --out $out
+
+#use plink again to do PCA on linkage pruned markers, should create two files called
+# $out.eigenval and $out.eigenvec that can be used to plot.
+# will also create a $out.bed, $out.bim, and $out.fam that are necessary for admixture (next step) 
+plink --vcf $VCF --double-id --allow-extra-chr --set-missing-var-ids @:# \
+--extract $out.prune.in \
+--make-bed --pca --out $out
+
+
+
+
+
+
+
+
