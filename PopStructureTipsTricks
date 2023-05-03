@@ -1,6 +1,13 @@
 #usefull snippets for looking into popstructure
 
 #Start from VCF file (see vcf tips and tricks for file conversions)
+module load plink/1.9
+module load vcftools
+module load admixture
+
+VCF=file.vcf
+OUT=name
+
 
 #Use plinnk1.9 (not 2.0 on) to do Principle component analysis
 #This snippet will look at 50Kb windows moving 10 bp and dropping loci
@@ -8,19 +15,40 @@
 
 plink --vcf $VCF --double-id --allow-extra-chr \
 --set-missing-var-ids @:# \
---indep-pairwise 50 10 0.1 --out $out
+--indep-pairwise 50 10 0.1 --out $OUT
 
 #use plink again to do PCA on linkage pruned markers, should create two files called
 # $out.eigenval and $out.eigenvec that can be used to plot.
 # will also create a $out.bed, $out.bim, and $out.fam that are necessary for admixture (next step) 
 plink --vcf $VCF --double-id --allow-extra-chr --set-missing-var-ids @:# \
---extract $out.prune.in \
---make-bed --pca --out $out
+--extract $OUT.prune.in \
+--make-bed --pca --out $OUT
 
+##PCA can now be plotted, but we are going to move on to admixture now
+#Need to create a pruned vcf using vcftools. 
 
+vcftools --vcf $VCF --out $OUT.pruned --recode --snps $OUT.prune.in 
 
+#should now have a file called $OUT.pruned.recode.vcf
 
+plink --vcf $OUT.pruned.recode.vcf --make-bed --out $OUT --allow-extra-chr --double-id
 
+# ADMIXTURE does not accept chromosome names that are not human chromosomes. exchange the first column by 0
+awk '{$1="0";print $0}' $OUT.bim > $OUT.bim.tmp
+mv $OUT.bim.tmp $OUT.bim
 
+#Test run admixture with k=2
+admixture --cv $OUT.bed 2 > log2.out
 
+#now that we know it works lets do some more but in a loop
+for i in {3..10}
+do
+admixture --cv $OUT.bed $i > log${i}.out
+done
+
+#bring all analysis files into a single summary file called $OUT.cv.error to check stats on best kvalue
+awk '/CV/ {print $3,$4}' *out | cut -c 4,7-20 > $OUT.cv.error
+
+#There should now be a set of files with the suffix .P and .Q and these 
+#can be downoaded and used in R to graph out structure
 
