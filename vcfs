@@ -19,8 +19,13 @@ run_pipeline.pl -Xmx3100m -importGuess sorted.vcf \
 
 run_pipeline.pl -Xmx3100m -fork1 -h hapmap.txt -export -exportType VCF -runfork1
 
+#get list of isolates in vcf/bcf
+bcftools query -l $VCF
 
-
+#extract samples from vcf/bcf with a list of sample IDs
+bcftools view -s sample.list -Ov -o new.vcf
+OR
+vcftools --vcf $VCF/BCF --keep sample.list --recode --out $subsetname
 
 
 
