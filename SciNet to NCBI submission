@@ -1,0 +1,11 @@
+#notes on submitting data to NCBI via Scinet
+#dont forget to get an aspera key from NCBI via the link below:
+#Key is already downloaded to home directory: ~/aspera.openssh
+#Log in to DTN node
+#navigate to data directory and run
+
+ascp - i ~/aspera.openssh -QT -l100m -k1 -d <file path to data> <submission address given during ncbi submission> 2>log &
+
+That should upload the data and should create a "log" file that holds the stdout results. 
+
+
