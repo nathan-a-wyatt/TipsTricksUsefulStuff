@@ -1,2 +1,7 @@
 #rename fast file headers
 
+#get total reads in bam file
+samtools view -c SAMPLE.bam
+
+#count mapped reads
+samtools view -c -F 260 SAMPLE.bam
