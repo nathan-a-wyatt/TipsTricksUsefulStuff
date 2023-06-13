@@ -9,4 +9,6 @@ ascp - i ~/aspera.openssh -QT -l100m -k1 -d <file path to data> subasp@upload.nc
 
 That should upload the data and should create a "log" file that holds the stdout results. 
 
+#getting data from novogene
 
+wget -r -c ftp://<UserAccount>:<Password>@usftp21.novogene.com:21/ 2>log &
