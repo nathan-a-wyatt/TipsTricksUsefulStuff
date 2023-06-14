@@ -5,7 +5,7 @@
 #navigate to data directory and run
 #remember data needs to be in a file folder. individual files don't work
 
-ascp - i ~/aspera.openssh -QT -l100m -k1 -d <file path to data> subasp@upload.ncbi.nlm.nih.gov:uploads/nathan.wyatt_usda.gov_68Y3cHAN &> log.txt
+ascp -i ~/aspera.openssh -QT -l100m -k1 -d <file path to data> subasp@upload.ncbi.nlm.nih.gov:uploads/nathan.wyatt_usda.gov_68Y3cHAN &> log.txt
 
 That should upload the data and should create a "log" file that holds the stdout results. 
 
