@@ -12,3 +12,11 @@ That should upload the data and should create a "log" file that holds the stdout
 #getting data from novogene
 
 wget -r -c ftp://<UserAccount>:<Password>@usftp21.novogene.com:21/ 2>log &
+
+#create md5 for files
+md5sum --tag <file/directory> > <output.md5>
+
+#verify a download with md5 
+
+md5sum -c <md5 file>
+
