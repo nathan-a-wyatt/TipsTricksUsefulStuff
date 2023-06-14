@@ -1,0 +1,5 @@
+#Running signal P on Scinet
+#This script should 
+~/sbf/programs/signalp-6-package/bin/signalp6 --fastafile <your_AA_file.fa --output_dir <your_output_dir> --format txt
+
+#Running effectorP 3.0 on secreted proteins
