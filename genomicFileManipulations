@@ -6,3 +6,9 @@ samtools view -c SAMPLE.bam
 
 #count mapped reads
 samtools view -c -F 260 SAMPLE.bam
+
+#subset 1000 reads for a test of some pipeline
+seqtk sample -s100 my.fq 10000 > 1K_sub.my.fq
+
+
+
