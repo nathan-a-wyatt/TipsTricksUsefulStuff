@@ -1,0 +1,7 @@
+#use AWK to reorder columns
+awk 'BEGIN {FS="\t"; OFS=","} {print $2, $1, $5, $3, $4}' file
+FS is the field sep for input file
+OFS is the sep for output
+print the order you want 
+file = input file
+
