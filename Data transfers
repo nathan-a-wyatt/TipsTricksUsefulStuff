@@ -7,6 +7,9 @@
 
 ascp -i ~/aspera.openssh -QT -l100m -k1 -d <file path to data> subasp@upload.ncbi.nlm.nih.gov:uploads/nathan.wyatt_usda.gov_68Y3cHAN &> log.txt &
 
+#after running the above command type "disown" and the command will run until complete regardless of login status
+
+
 That should upload the data and should create a "log" file that holds the stdout results. 
 
 #getting data from novogene
