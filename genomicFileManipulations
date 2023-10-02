@@ -11,4 +11,10 @@ samtools view -c -F 260 SAMPLE.bam
 seqtk sample -s100 my.fq 10000 > 1K_sub.my.fq
 
 
+#convert PacBio bam to fastq file, the software bptk has been installed via conda to nw_conda
+ml miniconda
+source activate ~/sbf/programs/nw_conda
+bam2fastq -o <out_prefix> bam1.bam bam2.bam
+
+
 
