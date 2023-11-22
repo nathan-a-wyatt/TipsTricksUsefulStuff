@@ -1,0 +1,20 @@
+#Load necessary packages and install if not already installed
+if (!require("tidyverse"))
+  install.packages("tidyverse")
+
+#create a list from a column in a data frame
+my_list <- df$column_name
+
+#Clearn objects
+rm(list = ls(all = TRUE))
+
+#Remove packages other than R base packages
+invisible(lapply(paste0("package:", names(sessionInfo()$otherPkgs)),   # Unload add-on packages
+                 detach,
+                 character.only = TRUE, unload = TRUE))
+
+
+
+
+
+
