@@ -17,4 +17,9 @@ source activate ~/sbf/programs/nw_conda
 bam2fastq -o <out_prefix> bam1.bam bam2.bam
 
 
+#fix a bam file with duplicate header entries. 
+samtools view -h <in.bam> > <out.sam>
+awk 'BEGIN { i = 0; } /^@/ { if (/:516332_sim4/) { if (i++ < 1) { print; } } else { print } } /^[^@]/ { print }' out.sam > out-fixed.sam
+
+
 
