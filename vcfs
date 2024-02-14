@@ -23,7 +23,7 @@ run_pipeline.pl -Xmx3100m -fork1 -h hapmap.txt -export -exportType VCF -runfork1
 bcftools query -l $VCF
 
 #extract samples from vcf/bcf with a list of sample IDs
-bcftools view -s sample.list -Ov -o new.vcf <in.vcf>
+bcftools view -S sample.list -Ov -o new.vcf <in.vcf>
 OR
 vcftools --vcf $VCF/BCF --keep sample.list --recode --out $subsetname
 
