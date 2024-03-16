@@ -30,7 +30,9 @@ vcftools --vcf $VCF/BCF --keep sample.list --recode --out $subsetname
 #merging bcf/vcf called against the same genome
 bcftools merge --no-index -Ov -o <merged.name> <bcf/vcfs to be merged> 
 
-
+###get per sample depth stats 
+bcftools query -L <vcf/bcf> > sample.list
+bcftools stats -S sample.list > stats.txt
 
 
 
