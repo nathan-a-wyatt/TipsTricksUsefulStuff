@@ -27,6 +27,9 @@ bcftools view -S sample.list -Ov -o new.vcf <in.vcf>
 OR
 vcftools --vcf $VCF/BCF --keep sample.list --recode --out $subsetname
 
+#drop samples from vcf file
+vcftools --vcf $VCF --remove remove.list --recode --out $newname
+
 #merging bcf/vcf called against the same genome
 bcftools merge --no-index -Ov -o <merged.name> <bcf/vcfs to be merged> 
 
