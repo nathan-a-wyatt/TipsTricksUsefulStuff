@@ -1,0 +1,18 @@
+## Submitting files to ncbi or downloading from NCBI to the cluster is a real pain in the ass...
+##hopefully these tidbits help.
+
+#running table2asn so that you can submit an annotated file to NCBI. NOTE: this is to be used when submitting annotation data for the first time. 
+#If reannotating or updating an annotation, the 9th column of the gff3 file needs to include a <locus-tag=XXXXX_######> designation to preserve gene IDs across annotated updates. 
+table2asn -M n -J -c w -euk -locus-tag <locus_tag> -t template.sbt -gaps-min 10 -gaps-unknown 100 -l linkage-map -j "[organism=Pyrenophora teres f. teres] [isolate=0-1]" \
+  -i <fasta_file> -f <gff_file> -o <output_file.sqn> -Z -V b
+
+#command for updating annoations
+table2asn -M n -J -c w -euk -t template.sbt -gaps-min 10 -gaps-unknown 100 -l linkage-map -j "[organism=Pyrenophora teres f. teres] [isolate=0-1]" \
+  -i <fasta_file> -f <gff_file> -o <output_file.sqn> -Z -V b
+
+#command for updating annoations
+table2asn -M n -J -c w -euk -locus-tag <locus_tag> -t template.sbt \
+  -gaps-min 10 -gaps-unknown 100 -l map \
+  -j "[organism=Pyrenophora teres f. teres] [isolate=0-1]" \
+  -i <fasta_file> -f <gff_file> -o <output_file.sqn> \
+  -c bes -z cleanup.txt -Z -V b
