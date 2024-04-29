@@ -24,3 +24,9 @@ awk 'BEGIN { i = 0; } /^@/ { if (/:516332_sim4/) { if (i++ < 1) { print; } } els
 #rename using matching patters. 
 rename -v <pattern> <replace> *
 
+#extract mapped reads from bam file, very important to use samtools view -h to print out the headers. 
+samtools view -h -F 4 <file.bam> > <mapped.bam>
+samtools bam2fq <mapped.bam> > <mapped.fastq>
+
+
+
