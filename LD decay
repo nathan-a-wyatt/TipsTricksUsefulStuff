@@ -1,0 +1,11 @@
+# LD decay is a useful stat to help you determine a confidence region for associations. 
+#there are a couplle softwares that can be used to calculate pairwise LD along a chromosome or chromosomal region. 
+
+#PopLDDecay
+~/sbf/programs/PopLDdecay/PopLDdecay -InVCF <file.vcf> -OutStat LDdecay -MAF 0.05
+
+
+#VCF/BCFtools
+
+
+
