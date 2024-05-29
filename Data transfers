@@ -21,5 +21,5 @@ md5sum --tag <file/directory> > <output.md5>
 
 #verify a download with md5 
 
-md5sum -c <md5 file> 2>nw_checksum.txt &
+md5sum -c <md5 file> &>nw_checksum.txt &
 
