@@ -7,6 +7,11 @@ vcftools --bcf variant.calls.bcf --out mito --remove-indels \
   --minQ 20 \
   --minDP 3 \
   --recode 
+
+#hard filters
+vcftools --vcf ptm.merged.vcf --out ptm.merged.hdfilter.snps --min-meanDP 5 --max-missing 0.9 --minQ 20 --minDP 3 --recode --remove-indels --maf 0.05 --max-maf 0.95 --max-alleles 2 --min-alleles 2
+vcftools --vcf ptm.merged.vcf --out ptm.merged.hdfilter.indels --min-meanDP 3 --max-missing 0.9 --minQ 20 --minDP 3 --recode --keep-only-indels --maf 0.05 --max-maf 0.95
+
 #export vcf with indels only
 vcftools --bcf variant.calls.bcf -out mito --keep-only-indels
 
