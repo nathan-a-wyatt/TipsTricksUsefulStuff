@@ -1,0 +1,19 @@
+#details on running speciation and genomics scrips from: https://speciationgenomics.github.io/
+
+#if you don't already have it please download this repository and make sure it is installed correctly. 
+git clone https://github.com/simonhmartin/genomics_general.git
+
+#First step is to use the script parseVCF.py to convert vcf to geno file
+#we set ploidy to 1 for our haploid analysis. 
+~/sbf/programs/genomics_general/VCF_processing/parseVCF.py -i <file.vcf> --ploidy 1 > <file.geno>
+
+
+
+
+
+
+
+
+
+
+
