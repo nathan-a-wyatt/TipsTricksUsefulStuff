@@ -1,0 +1,5 @@
+# spot to keep track of useful one liners 
+
+#rename files or parts of files using a map.txt file with column1 having original string and column 2 having the replacement string. 
+#this can be run in a directory or with an input file 
+ls | awk 'NR==FNR{a[$1]=$2;next} {old=$0; for(i in a)gsub(i,a[i]); if(old!=$0)print"mv \""old"\" \""$0"\""}' map.txt - | sh
