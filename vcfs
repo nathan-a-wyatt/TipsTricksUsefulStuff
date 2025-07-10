@@ -43,7 +43,9 @@ bcftools query -L <vcf/bcf> > sample.list
 bcftools stats -S sample.list > stats.txt
 
 
-
+#Rename samples in a bcf file... Need to have a tab separated file with:
+# Col1 = old name and Col2 = new name
+bcftools reheader -s <matching_sample_rename.txt> -o <new_output_file>.bcf <input.bcf>
 
 
 
