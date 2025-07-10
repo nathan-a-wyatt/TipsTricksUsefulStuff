@@ -40,7 +40,7 @@ bcftools merge --no-index -Ov -o <merged.name> <bcf/vcfs to be merged>
 
 ###get per sample depth stats 
 bcftools query -L <vcf/bcf> > sample.list
-bcftools stats -S sample.list > stats.txt
+bcftools stats -S sample.list <vcf/bcf> > stats.txt
 
 
 #Rename samples in a bcf file... Need to have a tab separated file with:
